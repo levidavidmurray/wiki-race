@@ -9,13 +9,17 @@
   },
   "devDependencies": {
     "@vueuse/nuxt": "^9.3.1",
-    "nuxt": "3.0.0-rc.12",
+    "nuxt": "npm:nuxt3@latest",
     "nuxt-icon": "^0.1.6",
     "unplugin-vue-components": "^0.22.8"
   },
   "dependencies": {
     "@iconify/json": "^2.1.124",
+    "@pinia/nuxt": "^0.4.3",
+    "@types/animejs": "^3.1.6",
+    "animejs": "^3.2.1",
     "naive-ui": "^2.33.5",
-    "nuxt-windicss": "^2.5.2"
+    "nuxt-windicss": "^2.5.2",
+    "pinia": "^2.0.23"
   }
 }

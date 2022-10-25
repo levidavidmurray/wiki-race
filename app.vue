@@ -1,9 +1,16 @@
 <template>
     <nuxt-layout>
-        <n-config-provider :theme="$isDark ? darkTheme : lightTheme">
+        <n-config-provider>
             <n-message-provider>
                 <n-dialog-provider>
-                    <nuxt-page />
+                    <div class="relative">
+                        <div v-if="gameState.loading" class="fixed w-full h-full top-0 left-0">
+                            <div class="w-full h-full flex justify-center items-center">
+                                <n-spin size="large"></n-spin>
+                            </div>
+                        </div>
+                        <nuxt-page />
+                    </div>
                 </n-dialog-provider>
             </n-message-provider>
         </n-config-provider>
@@ -11,8 +18,9 @@
 </template>
 
 <script lang="ts" setup>
-import { NMessageProvider, NConfigProvider, NDialogProvider } from 'naive-ui';
-import { darkTheme, lightTheme } from 'naive-ui';
+import { NMessageProvider, NConfigProvider, NDialogProvider, NSpin } from 'naive-ui';
+import { useGameState } from '~/store/gameState';
 
-const { $isDark } = useNuxtApp()
+const gameState = useGameState()
+
 </script>

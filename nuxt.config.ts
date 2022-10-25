@@ -12,6 +12,11 @@ export default defineNuxtConfig({
             ]
             : ['@juggle/resize-observer']
     },
+    
+    css: [
+        'assets/css/wiki-styles.css',
+        'assets/css/wiki-site-styles.css',
+    ],
 
     meta: {
         title: 'Nuxt3-WindiCSS-NaiveUI Starter',
@@ -25,6 +30,7 @@ export default defineNuxtConfig({
         'nuxt-windicss',
         '@vueuse/nuxt',
         'nuxt-icon',
+        '@pinia/nuxt',
     ],
 
     vite: {

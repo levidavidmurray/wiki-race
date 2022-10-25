@@ -9,6 +9,7 @@ export default defineConfig({
     ],
     theme: {
         fontFamily: {
+            ...defaultTheme.fontFamily,
             'sans': ['Inter', ...defaultTheme.fontFamily.sans],
         },
     },
