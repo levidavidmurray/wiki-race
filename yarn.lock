@@ -319,7 +319,7 @@
     "@iconify/types" "*"
     pathe "^0.3.0"
 
-"@iconify/types@*":
+"@iconify/types@*", "@iconify/types@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@iconify/types/-/types-2.0.0.tgz#ab0e9ea681d6c8a1214f30cd741fe3a20cc57f57"
   integrity sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==
@@ -963,6 +963,11 @@
     debug "^4.3.4"
     jiti "^1.14.0"
     windicss "^3.5.6"
+
+"@windicss/plugin-scrollbar@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@windicss/plugin-scrollbar/-/plugin-scrollbar-1.2.3.tgz#4796e999e98a4bca6c269fa1faffd2e9b5452cac"
+  integrity sha512-+cqv1pEmaNPITeBJ/lO6tc8IjBzRhQ+V9G8r249MMXivYoxUO4DtModBrRGHVvBgsYZgPXDsIv2jqtxc4NqYEg==
 
 "@windicss/plugin-utils@1.8.8", "@windicss/plugin-utils@^1.1.1", "@windicss/plugin-utils@^1.8.7", "@windicss/plugin-utils@^1.8.8":
   version "1.8.8"
@@ -2510,6 +2515,13 @@ human-signals@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-2.1.0.tgz#dc91fcba42e4d06e4abaed33b3e7a3c02f514ea0"
   integrity sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==
+
+iconify-icon@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/iconify-icon/-/iconify-icon-1.0.1.tgz#c715762b373540bde84252becf29c76babe63a17"
+  integrity sha512-8qXahj8q0fJ1uMkVJ1DujJw35CWBFxUY9UFCzytfItNjcoj+Dz7yUakuXTzaByIc8seQCnw9CuLVzHdw7yEkBQ==
+  dependencies:
+    "@iconify/types" "^2.0.0"
 
 iconv-lite@^0.4.24:
   version "0.4.24"

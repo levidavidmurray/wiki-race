@@ -1289,7 +1289,6 @@ div.thumbinner {
 @media screen {
     body {
         background-color: #f6f6f6;
-        overflow-y: scroll
     }
 
     .mw-body,

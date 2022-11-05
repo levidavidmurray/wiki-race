@@ -3,7 +3,7 @@
         <n-config-provider>
             <n-message-provider>
                 <n-dialog-provider>
-                    <div class="relative">
+                    <div class="relative font-sans">
                         <div v-if="gameState.loading" class="fixed w-full h-full top-0 left-0">
                             <div class="w-full h-full flex justify-center items-center">
                                 <n-spin size="large"></n-spin>

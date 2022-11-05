@@ -1,10 +1,17 @@
 <template>
-    <div>
-        <div v-if="gameState.currentPage">Current Page ID: {{ gameState.currentPage.pageid }}</div>
-        <div v-if="gameState.endPage">Target Page ID: {{ gameState.endPage.pageid }}</div>
-        <div class="wiki-path mt-4" v-if="gameState.startPage">
+    <div class="pt-8">
+        <div v-if="gameState.isStarted" class="flex justify-between t-0 w-full">
+            <span class="font-medium">{{ gameState.startPage.title }}</span>
+            <span class="font-semibold">{{ gameState.timeDisplay }}</span>
+            <span class="font-medium">{{ gameState.endPage.title }}</span>
+        </div>
+        <div class="wiki-path" v-if="gameState.isStarted">
+
             <div class="path-line"></div>
+
+            <!-- Start Page Marker -->
             <wiki-page-indicator :page="gameState.startPage" large />
+
             <div ref="stepsRef" class="relative w-full flex justify-start items-center">
                 <wiki-page-indicator 
                     v-for="(page, index) in gameState.history"
@@ -14,7 +21,10 @@
                     :left="getStepOffset(index)"
                 />
             </div>
+
+            <!-- Goal Page Marker -->
             <wiki-page-indicator :page="gameState.endPage" large :active="gameState.isComplete" />
+
         </div>
     </div>
 </template>

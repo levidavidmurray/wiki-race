@@ -1,5 +1,5 @@
 <template>
-    <div class="text-sm" :class="{'opacity-20': gameState.loading}">
+    <div class="text-sm relative" :class="{'opacity-20': gameState.loading}">
         <div v-if="gameState.currentPage">
             <h1 class="mb-0 font-serif text-3xl">{{ gameState.wikiTitle }}</h1>
             <p class="mt-2 mb-4">From Wikipedia, the free encyclopedia</p>
@@ -18,7 +18,6 @@ const gameState = useGameState()
 gameState.$onAction(({ after }) => {
     after(() => {
         replaceAnchorClicks()
-        scrollTo({ top: 0 })
     })
 })
 
