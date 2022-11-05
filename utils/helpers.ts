@@ -7,9 +7,16 @@ export const toQueryParams = (params: object): string => {
     return paramStr
 }
 
-export const convertMS = (ms: number): string =>  {
-    let m, s;
-    s = Math.floor(ms / 1000);
+export interface TimeDisplayType {
+    minutes: string;
+    seconds: string;
+    milliseconds: string;
+}
+
+export const convertMS = (inputMs: number): TimeDisplayType =>  {
+    let m, s, ms;
+    s = Math.floor(inputMs / 1000);
+    ms = ((inputMs / 1000) - s).toFixed(2)
     m = Math.floor(s / 60);
     s = s % 60;
     m = m % 60;
@@ -21,5 +28,11 @@ export const convertMS = (ms: number): string =>  {
         m = `0${m}`
     }
 
-    return `${m}:${s}`;
+    ms = ms.substring(2, ms.length)
+
+    return {
+        minutes: m,
+        seconds: s,
+        milliseconds: ms,
+    }
   };

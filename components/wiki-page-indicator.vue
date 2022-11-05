@@ -47,7 +47,7 @@ onMounted(() => {
 <style scoped>
 
 .page-indicator {
-    @apply rounded-full bg-neutral-400 relative z-10 bg-cover bg-no-repeat bg-center box-content border-2 border-neutral-300;
+    @apply rounded-full bg-neutral-400 relative z-10 bg-cover bg-no-repeat bg-center box-content border-2 border-neutral-300 flex-shrink-0;
     --size: 20px;
     height: var(--size);
     width: var(--size);

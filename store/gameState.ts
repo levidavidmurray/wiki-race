@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia'
+import { useTimestamp } from '@vueuse/core'
 import { WikiPageDisplay, WikiPageDto } from '~/types/wiki';
-import { convertMS } from '~/utils/helpers';
+import { convertMS, TimeDisplayType } from '~/utils/helpers';
+import { UnwrapNestedRefs } from '@vue/reactivity';
 
 interface GameState {
     startPage: WikiPageDisplay;
@@ -9,11 +11,12 @@ interface GameState {
     isComplete: boolean;
     history: WikiPageDisplay[];
     loading: boolean;
-    timeDisplay: string;
+    timeDisplay: UnwrapNestedRefs<TimeDisplayType>;
 }
 
 let timerInterval
 let startTime = -1
+let pauseTimer: () => void;
 
 export const useGameState = defineStore({
     id: 'game-state',
@@ -25,7 +28,11 @@ export const useGameState = defineStore({
         isComplete: false,
         history: [],
         loading: false,
-        timeDisplay: '00:00',
+        timeDisplay: reactive({
+            milliseconds: '00',
+            seconds: '00',
+            minutes: '00',
+        }),
     }),
 
     getters: {
@@ -46,13 +53,17 @@ export const useGameState = defineStore({
             this.stopTimer()
             startTime = new Date().valueOf()
 
-            timerInterval = setInterval(() => {
-                this.timeDisplay = convertMS(new Date().valueOf() - startTime)
-            }, 500)
+            const { pause } = useTimestamp({
+                controls: true,
+                callback: timestamp => {
+                    this.timeDisplay = convertMS(timestamp - startTime)
+                }
+            })
+            pauseTimer = pause
         },
 
         stopTimer() {
-            clearInterval(timerInterval)
+            pauseTimer?.()
         },
 
         async setNewPage(page: string) {

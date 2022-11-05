@@ -1,8 +1,8 @@
 <template>
-    <div class="pt-8">
+    <div>
         <div v-if="gameState.isStarted" class="flex justify-between t-0 w-full">
             <span class="font-medium">{{ gameState.startPage.title }}</span>
-            <span class="font-semibold">{{ gameState.timeDisplay }}</span>
+            <timer-display v-if="!hideTimer" :timeDisplay="gameState.timeDisplay" />
             <span class="font-medium">{{ gameState.endPage.title }}</span>
         </div>
         <div class="wiki-path" v-if="gameState.isStarted">
@@ -14,6 +14,7 @@
 
             <div ref="stepsRef" class="relative w-full flex justify-start items-center">
                 <wiki-page-indicator 
+                    v-if="isMounted"
                     v-for="(page, index) in gameState.history"
                     :page="page"
                     :active="!gameState.isComplete && index === gameState.history.length-1"
@@ -36,14 +37,19 @@ import { useGameState } from '~/store/gameState';
 const gameState = useGameState()
 
 const stepsRef: Ref<HTMLDivElement> = ref()
+const { hideTimer } = defineProps<{ hideTimer?: boolean; }>()
 
 const STEP_EL_SIZE = 20
 const DEFAULT_OFFSET = 16
 let offset = DEFAULT_OFFSET
+const isMounted = ref(false)
+
+onMounted(() => {
+    isMounted.value = true
+})
 
 const getStepOffset = (index) => {
-    const stepsEl = stepsRef.value
-    const halfPoint = stepsEl.clientWidth / 2
+    const halfPoint = stepsRef.value.clientWidth / 2
 
     // reduce offset to current total step length minus 
     if (gameState.history.length * (offset + STEP_EL_SIZE) > halfPoint) {
@@ -51,7 +57,6 @@ const getStepOffset = (index) => {
         offset = offset - offsetReduction
     }
 
-    console.log('stepsEl', stepsEl.clientWidth)
     return (offset) * (index+1) + (STEP_EL_SIZE * index)
 }
 

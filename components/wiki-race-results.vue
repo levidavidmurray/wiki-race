@@ -14,13 +14,33 @@
                 <svg class="svg-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                     <path fill="#0099ff" fill-opacity="1" d="M0,320L120,304C240,288,480,256,720,245.3C960,235,1200,245,1320,250.7L1440,256L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path>
                 </svg>
-                <div>
-                    <div class="space-x-4">
-                        <div>
-                            <Icon name="bi:stopwatch-fill"></Icon>
-                            <span>Time:</span>
+                <div class="px-8 relative -top-8">
+                    <wiki-race-header hide-timer />
+                </div>
+                <div class="px-24 space-y-6">
+
+                    <div class="flex items-center justify-center relative">
+                        <div class="w-1/5">
+                            <p class="m-0 text-right text-xl font-medium text-neutral-500">Your Time</p>
                         </div>
-                        <span>{{ gameState.timeDisplay }}</span>
+                        <div class="pl-32 flex flex-grow items-center justify-start space-x-3 text-2xl text-neutral-700">
+                            <Icon name="bi:stopwatch-fill" class="text-3xl relative -top-0.5"></Icon>
+                            <timer-display :timeDisplay="gameState.timeDisplay" />
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-center relative">
+                        <div class="w-1/5">
+                            <p class="m-0 text-right text-xl font-medium text-neutral-500">Page Count</p>
+                        </div>
+                        <div class="pl-32 flex flex-grow items-center justify-start space-x-3 text-2xl text-neutral-700">
+                            <Icon name="ic:baseline-library-books" class="text-3xl relative -top-0.5"></Icon>
+                            <span>{{ gameState.history.length }}</span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end pt-12">
+                        <n-button @click="playAgain">Play Again</n-button>
                     </div>
                 </div>
             </div>
@@ -29,8 +49,8 @@
 </template>
 
 <script lang="ts" setup>
+import { NButton } from 'naive-ui'
 import { useGameState } from '~/store/gameState';
-
 
 const COMPLETE_TEXT = 'RACE COMPLETED'
 const completeTextWords = []
@@ -38,6 +58,10 @@ const completeTextWords = []
 const gameState = useGameState()
 const overlayRef = ref(null)
 const resultsBoxRef = ref(null)
+
+const playAgain = () => {
+    gameState.setDefault()
+}
 
 // Separate by words
 COMPLETE_TEXT.split(' ').forEach(word => {
