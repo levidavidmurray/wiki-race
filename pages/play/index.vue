@@ -11,7 +11,6 @@
 </template>
 
 <script lang="ts" setup>
-import { onKeyUp } from '@vueuse/core'
 import { useGameState } from '~/store/gameState';
 
 const gameState = useGameState()
@@ -21,10 +20,6 @@ gameState.$onAction(({ after }) => {
     after(() => {
         scrollBodyRef?.value?.scrollTo?.({ top: 0 })
     })
-})
-
-onKeyUp('Shift', e => {
-    gameState.setDefault()
 })
 
 </script>
